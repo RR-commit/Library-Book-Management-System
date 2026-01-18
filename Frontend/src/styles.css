@@ -12,9 +12,13 @@ body {
   border-radius: 8px;
 } 
 
+h1{
+  text-align: center;
+}
 h1,
 h2 {
   margin: 0 0 12px;
+  color: red;
 }
 
 .grid {
