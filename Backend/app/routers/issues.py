@@ -29,6 +29,36 @@ def list_issues(db: Session = Depends(get_db), status_q: Optional[str] = None):
         )
     return out
 
+@router.get("/students", response_model=List[str])
+def list_open_students(db: Session = Depends(get_db)):
+    rows = db.query(models.Issue.student_name).filter(models.Issue.status == "Issued").distinct().all()
+    names = [r[0] for r in rows]
+    names.sort(key=lambda x: x.lower())
+    return names
+
+@router.get("/open_by_student", response_model=List[schemas.IssueOut])
+def open_by_student(student_name: str, db: Session = Depends(get_db)):
+    q = db.query(models.Issue).join(models.Book).filter(
+        models.Issue.student_name == student_name,
+        models.Issue.status == "Issued",
+    ).order_by(models.Issue.issued_at.desc())
+    rows = q.all()
+    out: List[schemas.IssueOut] = []
+    for r in rows:
+        out.append(
+            schemas.IssueOut(
+                id=r.id,
+                book_id=r.book_id,
+                student_name=r.student_name,
+                status=r.status,
+                issued_at=r.issued_at,
+                returned_at=r.returned_at,
+                book_title=r.book.title,
+                book_author=r.book.author,
+            )
+        )
+    return out
+
 @router.post("/", response_model=schemas.IssueOut, status_code=201)
 def issue_book(issue_in: schemas.IssueCreate, db: Session = Depends(get_db)):
     book = db.query(models.Book).filter(models.Book.id == issue_in.book_id).first()

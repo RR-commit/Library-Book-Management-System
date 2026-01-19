@@ -1,73 +1,109 @@
+/*Base Styles*/
 body {
   font-family: system-ui, Arial, sans-serif;
   margin: 0;
-  background: #f7f7f7;
+  background-color: lightgoldenrodyellow;
 }
 
 .container {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 24px auto;
-  background: #fff;
+  background-color: lightgoldenrodyellow;
   padding: 20px;
   border-radius: 8px;
-} 
+}
 
-h1{
+
+/*Headings*/
+h1 {
+  font-size: 45px;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 12px;
   text-align: center;
 }
-h1,
-h2 {
-  margin: 0 0 12px;
-  color: red;
-}
 
-.grid {
-  display: grid;
-  gap: 12px;
-}
-
+/*Layout Helpers*/
 .row {
   display: flex;
   gap: 8px;
   align-items: center;
   flex-wrap: wrap;
+  color: lightgoldenrodyellow;
 }
 
+.section {
+  border: 1px solid lightgoldenrodyellow;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.btnbar {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+  justify-content: center;
+}
+
+/*Form Elements*/
 input,
 select,
 button {
   padding: 8px;
+  background-color: lightgoldenrodyellow; 
 }
 
 input,
 select {
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 6px;
+  color: black ;
 }
 
 button {
-  border: 0;
+  border: none;
   border-radius: 6px;
   cursor: pointer;
-  background: #0078d4;
-  color: #fff;
+  background-color: black;
+  color: lightgoldenrodyellow;
 }
+
+/*Badge */
+.badge {
+  background-color: black;
+  color: lightgoldenrodyellow;
+  border: 1px solid black;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 12px;
+  margin-left: 6px;
+}
+
+/*Table*/
 
 table {
   width: 100%;
   border-collapse: collapse;
+  border-color: lightgoldenrodyellow;
 }
 
 th,
 td {
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid lightgoldenrodyellow;
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
-.badge {
-  background: #eee;
-  padding: 2px 8px;
-  border-radius: 12px;
-  font-size: 12px;
+th{
+  background-color: black;
+  color: lightgoldenrodyellow;
+}
+
+input::placeholder {
+  color: black;
 }

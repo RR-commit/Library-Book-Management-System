@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from typing import List
 from ..database import get_db
@@ -8,7 +8,7 @@ router = APIRouter(prefix="/api/books", tags=["Books"])
 
 @router.get("/", response_model=List[schemas.BookOut])
 def list_books(db: Session = Depends(get_db)):
-    return db.query(models.Book).all()
+    return db.query(models.Book).order_by(models.Book.id.asc()).all()
 
 @router.get("/{book_id}", response_model=schemas.BookOut)
 def get_book(book_id: int, db: Session = Depends(get_db)):
