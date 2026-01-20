@@ -3,6 +3,8 @@ export interface BookOut {
   title: string;
   author: string;
   available_copies: number;
+  is_deleted: boolean;
+  deleted_at?: string | null;
 }
 
 export interface IssueOut {
@@ -12,6 +14,7 @@ export interface IssueOut {
   status: "Issued" | "Returned";
   issued_at: string;
   returned_at?: string | null;
+  due_date?: string | null;
   book_title: string;
   book_author: string;
 }

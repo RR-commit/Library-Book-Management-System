@@ -107,3 +107,18 @@ th{
 input::placeholder {
   color: black;
 }
+
+
+.notice {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: lightgoldenrodyellow;
+  padding: 10px 16px;
+  border-radius: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  cursor: pointer;
+}

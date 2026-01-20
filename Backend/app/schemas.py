@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Optional, Literal
+from typing import Optional
 from datetime import datetime
 
 class BookBase(BaseModel):
@@ -17,21 +17,23 @@ class BookUpdate(BaseModel):
 
 class BookOut(BookBase):
     id: int
+    is_deleted: bool
+    deleted_at: Optional[datetime]
     class Config:
         from_attributes = True
-
-IssueStatus = Literal["Issued", "Returned"]
 
 class IssueCreate(BaseModel):
     book_id: int
     student_name: str
+    days: int = Field(ge=1)
 
 class IssueOut(BaseModel):
     id: int
     book_id: int
     student_name: str
-    status: IssueStatus
+    status: str
     issued_at: datetime
-    returned_at: Optional[datetime] = None
+    returned_at: Optional[datetime]
+    due_date: Optional[datetime]
     book_title: str
     book_author: str
